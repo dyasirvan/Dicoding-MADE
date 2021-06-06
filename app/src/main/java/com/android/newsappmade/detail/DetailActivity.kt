@@ -1,5 +1,7 @@
 package com.android.newsappmade.detail
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -36,7 +38,12 @@ class DetailActivity : AppCompatActivity() {
         binding.tvTitle.text = article.title
         binding.tvContent.text = article.content
         binding.tvAuthor.text = article.author
-//        binding.tvSource.text = article.source?.name
+        binding.tvDescription.text = article.description
+        binding.tvSource.text = ""
+        binding.tvShowMore.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(article.url))
+            startActivity(intent)
+        }
 
         val date = article.publishedAt?.replace("T", " \u2022 ")?.replace("Z", "")
 
@@ -63,7 +70,16 @@ class DetailActivity : AppCompatActivity() {
             detailNewsViewModel.setFavoriteTourism(article, statusFavorite)
             setStatusFavorite(statusFavorite)
         }
-        
+
+        binding.fabShare.setOnClickListener {
+            val intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "${getString(R.string.message_share)} ${article.url}")
+                type = "text/plain"
+            }
+            Intent.createChooser(intent, getString(R.string.share_with))
+            startActivity(intent)
+        }
     }
 
     private fun onExpandedButton() {

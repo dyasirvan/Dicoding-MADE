@@ -9,9 +9,9 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.newsappmade.R
-import com.android.newsappmade.core.data.Resource
-import com.android.newsappmade.core.ui.HeadlineAdapter
-import com.android.newsappmade.core.ui.TrendingAdapter
+import com.android.core.data.Resource
+import com.android.core.ui.HeadlineAdapter
+import com.android.core.ui.TrendingAdapter
 import com.android.newsappmade.databinding.FragmentHomeBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
                         is Resource.Loading -> binding.progressBarTrending.visibility = View.VISIBLE
                         is Resource.Success -> {
                             binding.progressBarTrending.visibility = View.GONE
-                            trendingAdapter.setData(trending.data?.subList(6, trending.data.size))
+                            trendingAdapter.setData(trending.data?.subList(6, trending.data!!.size))
                         }
                         is Resource.Error -> {
                             binding.progressBarTrending.visibility = View.GONE

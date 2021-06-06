@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.core.ui.FavoriteAdapter
 import com.android.newsappmade.R
-import com.android.newsappmade.core.ui.FavoriteAdapter
 import com.android.newsappmade.databinding.FragmentFavoriteBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 

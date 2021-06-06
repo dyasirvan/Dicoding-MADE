@@ -7,29 +7,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.core.ui.TrendingAdapter
 import com.android.newsappmade.R
-import com.android.newsappmade.core.data.Resource
-import com.android.newsappmade.core.domain.model.Article
-import com.android.newsappmade.core.ui.TrendingAdapter
 import com.android.newsappmade.databinding.FragmentSearchBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
+@FlowPreview
+@ExperimentalCoroutinesApi
 class SearchFragment : Fragment() {
     private val searchViewModel: SearchViewModel by viewModel()
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    @FlowPreview
-    @ExperimentalCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,16 +42,16 @@ class SearchFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 lifecycleScope.launch {
-                    searchViewModel.queryChannel.send(s.toString())
-                    /*
-                    searchViewModel.searchNews(s.toString()).observe(viewLifecycleOwner, {result ->
+
+                    searchViewModel.searchNews(s.toString()).observe(viewLifecycleOwner) { result ->
                         trendingAdapter.setData(result)
                         with(binding.rvSearch) {
                             layoutManager = LinearLayoutManager(context)
                             setHasFixedSize(true)
                             adapter = trendingAdapter
                         }
-                    })*/
+                    }
+
                 }
             }
 
@@ -66,18 +61,17 @@ class SearchFragment : Fragment() {
 
         })
 
-        searchViewModel.searchNews.observe(viewLifecycleOwner, {
-            var temp = listOf<Article>()
-            it.map { article ->
-                temp = article
+        trendingAdapter.setOnItemClickListener{
+            val bundle = Bundle().apply {
+                putParcelable("article", it)
             }
-            trendingAdapter.setData(temp)
-            with(binding.rvSearch) {
-                layoutManager = LinearLayoutManager(context)
-                setHasFixedSize(true)
-                adapter = trendingAdapter
-            }
-        })
+            findNavController().navigate(
+                R.id.action_searchFragment_to_detailActivity,
+                bundle
+            )
+        }
+
+
 
         /*
         searchViewModel.searchNews.observe(viewLifecycleOwner, { result ->

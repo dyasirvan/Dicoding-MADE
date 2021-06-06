@@ -1,7 +1,7 @@
 package com.android.newsappmade.di
 
-import com.android.newsappmade.core.domain.usecase.NewsInteractor
-import com.android.newsappmade.core.domain.usecase.NewsUseCase
+import com.android.core.domain.usecase.NewsInteractor
+import com.android.core.domain.usecase.NewsUseCase
 import com.android.newsappmade.detail.DetailNewsViewModel
 import com.android.newsappmade.favorit.FavoriteViewModel
 import com.android.newsappmade.home.HomeViewModel
