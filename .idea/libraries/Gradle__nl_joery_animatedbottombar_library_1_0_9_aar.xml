@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: nl.joery.animatedbottombar:library:1.0.9@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/269839eabca0bdad4fca20dd8a4525a8/jetified-library-1.0.9/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/269839eabca0bdad4fca20dd8a4525a8/jetified-library-1.0.9/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/269839eabca0bdad4fca20dd8a4525a8/jetified-library-1.0.9/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0baa2af4eb3104f9ef2eaeb2827a28ed/jetified-library-1.0.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0baa2af4eb3104f9ef2eaeb2827a28ed/jetified-library-1.0.9/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0baa2af4eb3104f9ef2eaeb2827a28ed/jetified-library-1.0.9/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

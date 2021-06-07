@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/News_App_MADE.iml" filepath="$PROJECT_DIR$/.idea/modules/News_App_MADE.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/News_App_MADE.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/News_App_MADE.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/News_App_MADE.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/News_App_MADE.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/favorite/News_App_MADE.favorite.iml" filepath="$PROJECT_DIR$/.idea/modules/favorite/News_App_MADE.favorite.iml" />
     </modules>
   </component>
 </project>

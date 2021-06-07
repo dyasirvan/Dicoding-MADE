@@ -14,15 +14,6 @@
             android:id="@+id/action_homeFragment_to_detailActivity"
             app:destination="@id/detailActivity" />
     </fragment>
-    <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="com.android.newsappmade.favorit.FavoriteFragment"
-        android:label="fragment_favorit"
-        tools:layout="@layout/fragment_favorite" >
-        <action
-            android:id="@+id/action_favoriteFragment_to_detailActivity"
-            app:destination="@id/detailActivity" />
-    </fragment>
     <activity
         android:id="@+id/detailActivity"
         android:name="com.android.newsappmade.detail.DetailActivity"
@@ -40,5 +31,18 @@
         <action
             android:id="@+id/action_searchFragment_to_detailActivity"
             app:destination="@id/detailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment2"
+        android:name="com.android.newsappmade.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        app:moduleName="News_App_MADE.favorite"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favoriteFragment2_to_detailActivity"
+            app:destination="@id/detailActivity" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="newsappmade://favorite" />
     </fragment>
 </navigation>
