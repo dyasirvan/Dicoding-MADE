@@ -14,5 +14,5 @@ data class Article (
     val title: String? = "",
     val url: String? = "",
     val urlToImage: String? = "",
-    val isFavorit: Boolean
+    val isFavorite: Boolean
 ): Parcelable

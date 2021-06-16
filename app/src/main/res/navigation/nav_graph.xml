@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
@@ -41,8 +40,6 @@
         <action
             android:id="@+id/action_favoriteFragment2_to_detailActivity"
             app:destination="@id/detailActivity" />
-        <deepLink
-            android:id="@+id/deepLink"
-            app:uri="newsappmade://favorite" />
+        <deepLink app:uri="newsappmade://favorite" />
     </fragment>
 </navigation>

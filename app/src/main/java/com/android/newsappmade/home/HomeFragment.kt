@@ -19,15 +19,19 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModel()
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         if(activity != null){
             val headlineAdapter = HeadlineAdapter()
@@ -37,28 +41,28 @@ class HomeFragment : Fragment() {
                 if (headline != null) {
                     when (headline) {
                         is Resource.Loading -> {
-                            binding.progressBarHeadline.visibility = View.VISIBLE
-                            binding.view.visibility = View.INVISIBLE
+                            binding?.progressBarHeadline?.visibility = View.VISIBLE
+                            binding?.view?.visibility = View.INVISIBLE
                         }
                         is Resource.Success -> {
-                            binding.progressBarHeadline.visibility = View.GONE
-                            binding.view.visibility = View.VISIBLE
+                            binding?.progressBarHeadline?.visibility = View.GONE
+                            binding?.view?.visibility = View.VISIBLE
                             headlineAdapter.setData(headline.data)
                         }
                         is Resource.Error -> {
-                            binding.progressBarHeadline.visibility = View.GONE
-                            binding.view.visibility = View.VISIBLE
-                            binding.viewError.root.visibility = View.VISIBLE
-                            binding.viewError.tvError.text = headline.message ?: getString(R.string.something_wrong)
+                            binding?.progressBarHeadline?.visibility = View.GONE
+                            binding?.view?.visibility = View.VISIBLE
+                            binding?.viewError?.root?.visibility = View.VISIBLE
+                            binding?.viewError?.tvError?.text = headline.message ?: getString(R.string.something_wrong)
                         }
                     }
                 }
             })
 
-            with(binding.rvHeadline) {
-                layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
-                setHasFixedSize(true)
-                adapter = headlineAdapter
+            with(binding?.rvHeadline) {
+                this?.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+                this?.setHasFixedSize(true)
+                this?.adapter = headlineAdapter
 
                 headlineAdapter.setOnItemClickListener{
                     val bundle = Bundle().apply {
@@ -74,24 +78,24 @@ class HomeFragment : Fragment() {
             homeViewModel.news.observe(viewLifecycleOwner, { trending ->
                 if (trending != null) {
                     when (trending) {
-                        is Resource.Loading -> binding.progressBarTrending.visibility = View.VISIBLE
+                        is Resource.Loading -> binding?.progressBarTrending?.visibility = View.VISIBLE
                         is Resource.Success -> {
-                            binding.progressBarTrending.visibility = View.GONE
+                            binding?.progressBarTrending?.visibility = View.GONE
                             trendingAdapter.setData(trending.data?.subList(6, trending.data!!.size))
                         }
                         is Resource.Error -> {
-                            binding.progressBarTrending.visibility = View.GONE
-                            binding.viewErrorTrending.root.visibility = View.VISIBLE
-                            binding.viewErrorTrending.tvError.text = trending.message ?: getString(R.string.something_wrong)
+                            binding?.progressBarTrending?.visibility = View.GONE
+                            binding?.viewErrorTrending?.root?.visibility = View.VISIBLE
+                            binding?.viewErrorTrending?.tvError?.text = trending.message ?: getString(R.string.something_wrong)
                         }
                     }
                 }
             })
 
-            with(binding.rvTrending) {
-                layoutManager = LinearLayoutManager(requireActivity())
-                setHasFixedSize(true)
-                adapter = trendingAdapter
+            with(binding?.rvTrending) {
+                this?.layoutManager = LinearLayoutManager(requireActivity())
+                this?.setHasFixedSize(true)
+                this?.adapter = trendingAdapter
 
             }
 
@@ -101,8 +105,10 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(directions)
             }
         }
-
-        return view
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

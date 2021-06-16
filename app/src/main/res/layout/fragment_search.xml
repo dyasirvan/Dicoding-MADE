@@ -7,7 +7,6 @@
     tools:context=".search.SearchFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorOnPrimary"
@@ -44,7 +43,6 @@
             android:paddingBottom="16dp"
             android:orientation="vertical">
             <ProgressBar
-                android:id="@+id/progress_bar_search"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -55,6 +53,13 @@
             <include
                 android:id="@+id/view_error"
                 layout="@layout/view_error"
+                android:visibility="gone"
+                android:layout_height="250dp"
+                android:layout_width="match_parent" />
+
+            <include
+                android:id="@+id/view_empty"
+                layout="@layout/view_empty"
                 android:visibility="gone"
                 android:layout_height="250dp"
                 android:layout_width="match_parent" />

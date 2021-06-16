@@ -13,19 +13,24 @@ import com.android.newsappmade.favorite.databinding.FragmentFavoriteBinding
 import com.android.newsappmade.favorite.di.favoriteModule
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
 
 class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private val favoriteViewModel: FavoriteViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        val view = binding.root
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         loadKoinModules(favoriteModule)
 
@@ -39,16 +44,20 @@ class FavoriteFragment : Fragment() {
 
         favoriteViewModel.favoriteNews.observe(viewLifecycleOwner, {
             favoriteAdapter.setData(it)
-            binding.viewEmpty.root.visibility = if(it.isNotEmpty()) View.GONE else View.VISIBLE
+            binding?.viewEmpty?.root?.visibility = if(it.isNotEmpty()) View.GONE else View.VISIBLE
             Log.d("FavoriteFragment", "onCreateView: $it")
         })
 
-        with(binding.rvFavorite){
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = favoriteAdapter
+        with(binding?.rvFavorite){
+            this?.layoutManager = LinearLayoutManager(requireContext())
+            this?.adapter = favoriteAdapter
         }
+    }
 
-        return view
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        unloadKoinModules(favoriteModule)
     }
 
 }

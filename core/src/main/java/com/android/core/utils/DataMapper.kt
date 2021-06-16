@@ -20,7 +20,7 @@ object DataMapper {
                 source = Source(it.sourceResponse?.id, it.sourceResponse!!.name),
                 url = it.url,
                 urlToImage = it.urlToImage,
-                isFavorit = false
+                isFavorite = false
             )
         }
 
@@ -59,7 +59,7 @@ object DataMapper {
                 source = Source(it.source?.id, it.source!!.name),
                 url = it.url,
                 urlToImage = it.urlToImage,
-                isFavorit = it.isFavorite
+                isFavorite = it.isFavorite
             )
         }
 
@@ -76,6 +76,6 @@ object DataMapper {
         ),
         url = input.url,
         urlToImage = input.urlToImage,
-        isFavorite = input.isFavorit
+        isFavorite = input.isFavorite
     )
 }

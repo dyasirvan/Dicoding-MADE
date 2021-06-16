@@ -42,7 +42,7 @@
                 android:paddingEnd="16dp"/>
 
             <include
-                android:id="@+id/view_error"
+                android:id="@+id/view_error_trending"
                 layout="@layout/view_error"
                 android:visibility="gone"
                 android:layout_below="@id/headline"
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent" />
 
             <ProgressBar
-                android:id="@+id/progress_bar_headline"
+                android:id="@+id/progress_bar_trending"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/headline"
@@ -84,14 +84,14 @@
                 android:paddingEnd="16dp"
                 tools:listitem="@layout/item_trending"/>
             <include
-                android:id="@+id/view_error_trending"
+                android:id="@+id/view_error"
                 layout="@layout/view_error"
                 android:visibility="gone"
                 android:layout_below="@id/trending"
                 android:layout_height="250dp"
                 android:layout_width="match_parent" />
             <ProgressBar
-                android:id="@+id/progress_bar_trending"
+                android:id="@+id/progress_bar_headline"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/trending"

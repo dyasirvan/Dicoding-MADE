@@ -7,20 +7,18 @@
     tools:context=".FavoriteFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_scrollFlags="snap|scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.MaterialComponents"
-            app:title="@string/favorit"
+            app:title="@string/favorite"
             app:titleTextColor="@color/black" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -35,11 +33,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:orientation="vertical">
+            android:paddingEnd="16dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_favorite"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -50,11 +48,9 @@
             <include
                 android:id="@+id/view_empty"
                 layout="@layout/view_empty"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:visibility="visible"
+                android:layout_height="250dp"
+                android:layout_width="match_parent"/>
 
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>

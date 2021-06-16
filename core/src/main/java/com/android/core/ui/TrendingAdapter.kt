@@ -33,7 +33,7 @@ class TrendingAdapter: RecyclerView.Adapter<TrendingAdapter.TrendingViewHolder>(
                     .apply(
                         RequestOptions.placeholderOf(R.drawable.ic_loading)
                             .error(R.drawable.ic_error))
-                    .into(binding.imgThumbnail)
+                    .into(imgThumbnail)
                 btnShare.setOnClickListener {
                     val intent = Intent().apply {
                         action = Intent.ACTION_SEND

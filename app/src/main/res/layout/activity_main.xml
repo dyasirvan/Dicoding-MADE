@@ -7,7 +7,6 @@
     tools:context=".MainActivity">
 
     <FrameLayout
-        android:id="@+id/flFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
@@ -16,7 +15,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-<!--        ketika pakai tag FragmentContainerView sesuai rekomendasi aplikasi malah force close-->
+<!--        ketika pakai tag FragmentContainerView
+sesuai rekomendasi aplikasi malah force close, mungkin karen library
+bottom navbar nya-->
         <fragment
             android:id="@+id/navHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"

@@ -63,7 +63,7 @@ class DetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        var statusFavorite = article.isFavorit
+        var statusFavorite = article.isFavorite
         setStatusFavorite(statusFavorite)
         binding.fabFav.setOnClickListener {
             statusFavorite = !statusFavorite

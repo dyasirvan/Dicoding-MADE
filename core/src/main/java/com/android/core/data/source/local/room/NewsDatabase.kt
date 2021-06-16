@@ -11,5 +11,5 @@ import com.android.core.utils.SourceTypeConverter
 
 abstract class NewsDatabase: RoomDatabase() {
 
-    abstract fun newsDao(): com.android.core.data.source.local.room.NewsDao
+    abstract fun newsDao(): NewsDao
 }

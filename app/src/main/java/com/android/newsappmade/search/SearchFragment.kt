@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.core.ui.TrendingAdapter
 import com.android.newsappmade.R
 import com.android.newsappmade.databinding.FragmentSearchBinding
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.launch
@@ -23,35 +24,44 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class SearchFragment : Fragment() {
     private val searchViewModel: SearchViewModel by viewModel()
     private var _binding: FragmentSearchBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        val view = binding.root
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val trendingAdapter = TrendingAdapter()
 
-        binding.etSearch.addTextChangedListener(object : TextWatcher{
+        binding?.etSearch?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 lifecycleScope.launch {
-
                     searchViewModel.searchNews(s.toString()).observe(viewLifecycleOwner) { result ->
-                        trendingAdapter.setData(result)
-                        with(binding.rvSearch) {
-                            layoutManager = LinearLayoutManager(context)
-                            setHasFixedSize(true)
-                            adapter = trendingAdapter
+                        if(result.isEmpty()){
+                            Snackbar.make(view, "Data Not Found", Snackbar.LENGTH_LONG).show()
+                            trendingAdapter.setData(listOf())
+                            binding?.viewEmpty?.root?.visibility = View.VISIBLE
+                            binding?.rvSearch?.visibility = View.INVISIBLE
+                        }else {
+                            trendingAdapter.setData(result)
+                        }
+                        with(binding?.rvSearch) {
+                            this?.layoutManager = LinearLayoutManager(context)
+                            this?.setHasFixedSize(true)
+                            this?.adapter = trendingAdapter
                         }
                     }
-
                 }
             }
 
@@ -71,35 +81,10 @@ class SearchFragment : Fragment() {
             )
         }
 
-
-
-        /*
-        searchViewModel.searchNews.observe(viewLifecycleOwner, { result ->
-            if (result != null) {
-                when (result) {
-                    is Resource.Loading -> {
-                        binding.progressBarSearch.visibility = View.VISIBLE
-                    }
-                    is Resource.Success -> {
-                        binding.progressBarSearch.visibility = View.GONE
-                        trendingAdapter.setData(result.data)
-                        with(binding.rvSearch) {
-                            layoutManager = LinearLayoutManager(context)
-                            setHasFixedSize(true)
-                            adapter = trendingAdapter
-                        }
-                    }
-                    is Resource.Error -> {
-                        binding.progressBarSearch.visibility = View.GONE
-                        binding.viewError.root.visibility = View.VISIBLE
-                        binding.viewError.tvError.text = result.message ?: getString(R.string.something_wrong)
-                    }
-                }
-            }
-        })
-         */
-
-        return view
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

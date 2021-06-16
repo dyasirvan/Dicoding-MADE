@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">MADE - News App</string>
-    <string name="search_news">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="home">Home</string>
-    <string name="favorit">Favorit</string>
+    <string name="favorite">Favorite</string>
     <string name="headlines_news">Headlines</string>
     <string name="trending">On Trending</string>
     <string name="title">Title</string>
@@ -13,12 +12,10 @@
 
     <string name="share_with">Share with</string>
     <string name="message_share">Please read this !</string>
-    <string name="date">11-02-2020</string>
+    <string name="date">Mar 05, 2020</string>
     <string name="content">Content</string>
     <string name="search">Search</string>
 
     <string name="no_data">Empty data</string>
     <string name="something_wrong">Oops.. something went wrong</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
