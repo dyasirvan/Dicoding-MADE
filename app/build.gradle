@@ -48,4 +48,13 @@ dependencies {
     implementation project(":core")
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // Bottom navbar
+    implementation 'nl.joery.animatedbottombar:library:1.0.9'
+
+    // saya tau sudah ada versi terbaru untuk navigation compose, namun ketika pakai yg terbaru saya mendapati error di safeargs nya
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha10"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:2.3.5"
 }
